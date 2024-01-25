@@ -5,6 +5,7 @@ import { Box3, MathUtils, Mesh, PerspectiveCamera, Vector3 } from "three";
 import "./materials/JitterMaterial";
 import JitterMaterial from "./materials/JitterMaterial";
 import SlicesMaterial from "./materials/SlicesMaterial";
+import MeltMaterial from "./materials/MeltMaterial";
 
 function frameArea(
   sizeToFitOnScreen: number,
@@ -48,7 +49,7 @@ export function Scene() {
     <>
       <mesh ref={meshRef}>
         <planeGeometry args={[width / 100, height / 100, 50, 50]} />
-        <SlicesMaterial uTexture={texture} />
+        <MeltMaterial uTexture={texture} />
       </mesh>
     </>
   );
