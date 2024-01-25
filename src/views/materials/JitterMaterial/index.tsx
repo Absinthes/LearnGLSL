@@ -1,11 +1,13 @@
-import vertexShader from "./vertex.glsl?raw";
-import fragmentShader from "./fragment.glsl?raw";
 import { DoubleSide, ShaderMaterial, Texture } from "three";
 import { useEffect, useRef } from "react";
 import { extend, useFrame } from "@react-three/fiber";
 import { pick } from "lodash-es";
 
-class JitterMaterialImp extends ShaderMaterial {
+import vertexShader from "./vertex.glsl?raw";
+import fragmentShader from "./fragment.glsl?raw";
+import { setUniforms } from "@/utils";
+
+export class JitterMaterial extends ShaderMaterial {
   constructor() {
     super({
       uniforms: {
@@ -24,12 +26,11 @@ class JitterMaterialImp extends ShaderMaterial {
       },
       vertexShader,
       fragmentShader,
-      side: DoubleSide,
     });
   }
 }
 
-extend({ JitterMaterialImp });
+extend({ JitterMaterial });
 
 export type JitterMaterialProps = {
   uTexture: Texture;
@@ -37,14 +38,7 @@ export type JitterMaterialProps = {
   speed?: number;
 };
 
-function setUniforms(target: Record<string, any>, values: Record<string, any>) {
-  Object.keys(values).forEach((key) => {
-    if (!Object.hasOwn(target, key)) return;
-    target[key].value = values[key];
-  });
-}
-
-export default function JitterMaterial(props: JitterMaterialProps) {
+export default function _JitterMaterial(props: JitterMaterialProps) {
   const shaderRef = useRef<ShaderMaterial>(null);
 
   useFrame(({ clock }) => {
@@ -60,5 +54,5 @@ export default function JitterMaterial(props: JitterMaterialProps) {
     );
   }, [props]);
 
-  return <jitterMaterialImp ref={shaderRef} />;
+  return <jitterMaterial ref={shaderRef} />;
 }

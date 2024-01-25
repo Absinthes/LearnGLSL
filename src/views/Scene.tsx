@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Box3, MathUtils, Mesh, PerspectiveCamera, Vector3 } from "three";
 import "./materials/JitterMaterial";
 import JitterMaterial from "./materials/JitterMaterial";
+import SlicesMaterial from "./materials/SlicesMaterial";
 
 function frameArea(
   sizeToFitOnScreen: number,
@@ -47,7 +48,7 @@ export function Scene() {
     <>
       <mesh ref={meshRef}>
         <planeGeometry args={[width / 100, height / 100, 50, 50]} />
-        <JitterMaterial uTexture={texture} />
+        <SlicesMaterial uTexture={texture} />
       </mesh>
     </>
   );
