@@ -1,11 +1,9 @@
 import { ShaderMaterial, Texture } from "three";
-import { extend, useFrame } from "@react-three/fiber";
+import { extend } from "@react-three/fiber";
 
 import vertexShader from "./vertex.glsl?raw";
 import fragmentShader from "./fragment.glsl?raw";
-import { useEffect, useRef } from "react";
-import { pick } from "lodash-es";
-import { setUniforms } from "@/utils";
+import CustomMaterial from "../CustomMaterial";
 
 export class SlicesMaterial extends ShaderMaterial {
   constructor() {
@@ -33,6 +31,8 @@ export class SlicesMaterial extends ShaderMaterial {
   }
 }
 
+extend({ SlicesMaterial });
+
 export type SlicesMaterialProps = {
   uTexture: Texture;
   slices?: number;
@@ -40,24 +40,7 @@ export type SlicesMaterialProps = {
   speedV?: number;
 };
 
-extend({ SlicesMaterial });
-
-export default function _SlicesMaterial(props: SlicesMaterialProps) {
-  const shaderRef = useRef<ShaderMaterial>(null);
-
-  useFrame(({ clock }) => {
-    shaderRef.current!.uniforms.time.value = clock.getElapsedTime();
-  });
-
-  useEffect(() => {
-    if (!shaderRef.current) return;
-
-    setUniforms(
-      shaderRef.current.uniforms,
-      pick(props, ["uTexture", "slices", "offset", "speedV"])
-    );
-  }, [props]);
-
-  // @ts-expect-error
-  return <slicesMaterial ref={shaderRef} />;
-}
+export default CustomMaterial<SlicesMaterialProps>({
+  material: SlicesMaterial,
+  propsKey: ["uTexture", "slices", "offset", "speedV"],
+});

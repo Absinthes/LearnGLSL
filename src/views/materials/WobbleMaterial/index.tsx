@@ -1,19 +1,18 @@
-import { ShaderMaterial, Texture } from "three";
-import { extend } from "@react-three/fiber";
-
 import vertexShader from "./vertex.glsl?raw";
 import fragmentShader from "./fragment.glsl?raw";
+import { ShaderMaterial, Texture } from "three";
+import { extend } from "@react-three/fiber";
 import CustomMaterial from "../CustomMaterial";
 
-export class JitterMaterial extends ShaderMaterial {
+export class WobbleMaterial extends ShaderMaterial {
   constructor() {
     super({
       uniforms: {
         amount: {
-          value: 0.1,
+          value: 0.01,
         },
-        speed: {
-          value: 0.8,
+        size: {
+          value: 10,
         },
         time: {
           value: 0,
@@ -28,15 +27,15 @@ export class JitterMaterial extends ShaderMaterial {
   }
 }
 
-extend({ JitterMaterial });
+extend({ WobbleMaterial });
 
-export type JitterMaterialProps = {
+export type WobbleMaterialProps = {
   uTexture: Texture;
   amount?: number;
-  speed?: number;
+  size?: number;
 };
 
-export default CustomMaterial<JitterMaterialProps>({
-  material: JitterMaterial,
-  propsKey: ["uTexture", "amount", "speed"],
+export default CustomMaterial<WobbleMaterialProps>({
+  material: WobbleMaterial,
+  propsKey: ["uTexture", "amount", "size"],
 });
