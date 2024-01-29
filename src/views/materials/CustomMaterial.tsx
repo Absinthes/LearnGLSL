@@ -27,6 +27,8 @@ export default function CustomMaterial<T extends object>(
   const name = material.name;
   const CamelCaseName = camelCase(name);
 
+  console.log(CamelCaseName);
+
   return (props: T) => {
     const shaderRef = useRef<ShaderMaterial>(null);
 
