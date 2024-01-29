@@ -11,7 +11,7 @@ export default function Index() {
   return (
     <>
       <Canvas>
-        <Help />
+        {/* <Help /> */}
         {/* <Controls /> */}
         <Camera />
         <Env />

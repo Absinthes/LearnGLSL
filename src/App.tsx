@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Index />
-      <Leva hidden={true || import.meta.env.MODE == "production"} />
+      <Leva hidden={import.meta.env.MODE == "production"} />
     </>
   );
 }
