@@ -13,6 +13,6 @@ export function setUniforms(
 ) {
   Object.keys(values).forEach((key) => {
     if (!Object.hasOwn(target, key)) return;
-    target[key].value = callbackFn(values[key], key);
+    target[key].value = callbackFn(values[key], key) || values[key];
   });
 }
