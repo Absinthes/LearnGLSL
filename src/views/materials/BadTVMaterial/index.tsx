@@ -10,16 +10,16 @@ export class BadTvMaterial extends ShaderMaterial {
     super({
       uniforms: {
         thickDistort: {
-          value: 3,
+          value: 1.5,
         },
         fineDistort: {
           value: 1,
         },
         rollSpeed: {
-          value: 1,
+          value: 0,
         },
         speed: {
-          value: 1,
+          value: 0.1,
         },
         time: {
           value: 0,
