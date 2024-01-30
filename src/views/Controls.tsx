@@ -13,7 +13,7 @@ export default function Controls() {
 
   return (
     <>
-      <OrbitControls ref={orbitControlsRef} />
+      <OrbitControls makeDefault ref={orbitControlsRef} />
     </>
   );
 }

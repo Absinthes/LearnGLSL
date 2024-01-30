@@ -6,7 +6,8 @@ import fragmentShader from "./fragment.glsl?raw";
 import CustomMaterial from "../CustomMaterial";
 
 export class RgbShiftMaterial extends ShaderMaterial {
-  constructor() {
+  constructor(...args) {
+    console.log(args);
     super({
       uniforms: {
         amount: {
