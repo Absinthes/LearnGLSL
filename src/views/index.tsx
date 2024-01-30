@@ -1,10 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
-import Controls from "./Controls";
 import Camera from "./Camera";
 import { Suspense } from "react";
-import Help from "./Help";
-import { Env } from "./Env";
 import { Scene } from "./Scene";
 
 export default function Index() {
@@ -13,8 +10,9 @@ export default function Index() {
       <Canvas>
         {/* <Help /> */}
         {/* <Controls /> */}
+        {/* <Env /> */}
+        <color attach="background" args={["#0b1534"]} />
         <Camera />
-        <Env />
         <Suspense>
           <Scene />
         </Suspense>
